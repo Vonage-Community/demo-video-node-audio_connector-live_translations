@@ -3,7 +3,7 @@ module.exports = {
   VONAGE_API_KEY: "",
   VONAGE_API_SECRET: "",
 
-  // The URL of the running application without "https://". This must be a publically available URL on the internet.
+  // The URL of the running application without "https://" and trailing "/" (ex. abc123.com). This must be a publically available URL on the internet.
   APP_DOMAIN: "",
 
   // Replace with your own subscription key, service region (e.g., "westus"),
