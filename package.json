@@ -1,7 +1,7 @@
 {
-  "name": "express-example-starter",
+  "name": "vonage-audio-connector-live-translations",
   "version": "1.0.0",
-  "description": "An Express-based application skeleton",
+  "description": "A demo application to showcase live translations in video calls",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js localhost 8080"
@@ -18,6 +18,10 @@
   },
   "keywords": [
     "expressjs",
-    "express"
+    "express",
+    "vonage",
+    "audio-connector",
+    "live-translations",
+    "Microsoft",
   ]
 }
