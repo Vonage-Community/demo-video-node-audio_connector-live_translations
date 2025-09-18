@@ -14,7 +14,7 @@
     "opentok": "^2.16.0"
   },
   "devDependencies": {
-    "nodemon": "3.1.7"
+    "nodemon": "3.1.10"
   },
   "keywords": [
     "expressjs",
