@@ -1,7 +1,7 @@
 module.exports = {
   // You can find the API key and API secret in the dashboard: https://tokbox.com/account/
   VONAGE_APP_ID: "",
-  VONAGE_PRIVATE_KEY: "",
+  VONAGE_PRIVATE_KEY64: "",
 
   // The URL of the running application without "https://" and trailing "/" (ex. abc123.com). This must be a publically available URL on the internet.
   APP_DOMAIN: "",

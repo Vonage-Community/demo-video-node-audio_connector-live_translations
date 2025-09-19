@@ -7,11 +7,12 @@
     "start": "nodemon index.js localhost 8080"
   },
   "dependencies": {
+    "@vonage/server-sdk": "^3.25.0",
+    "@vonage/video": "^1.26.0",
     "debug": "~4.4.3",
     "express": "5.1.0",
     "express-ws": "5.0.2",
-    "microsoft-cognitiveservices-speech-sdk": "^1.45.0",
-    "opentok": "^2.22.0"
+    "microsoft-cognitiveservices-speech-sdk": "^1.45.0"
   },
   "devDependencies": {
     "nodemon": "3.1.10"

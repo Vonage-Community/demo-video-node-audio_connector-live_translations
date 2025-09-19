@@ -18,6 +18,10 @@ To get be able to run the demo, you will need to fill in all the fields in the `
 
 ### On the Web
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Vonage-Community/demo-video-node-audio_connector-live_translations/tree/main)
+
+OR
+
 [Deploy to CodeSandbox.io](https://githubbox.com/Vonage-Community/demo-video-node-audio_connector-live_translations)
 
 One click, fill in `credentials.js`, and have a working demo. 
