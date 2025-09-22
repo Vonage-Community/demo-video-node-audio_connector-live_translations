@@ -1,5 +1,6 @@
 "use strict";
-const credentials = require("./credentials");
+require('dotenv').config();
+// const credentials = require("./credentials");
 const fs = require("fs");
 const express = require("express");
 const sdk = require("microsoft-cognitiveservices-speech-sdk");
@@ -12,23 +13,27 @@ app.use(express.json());
 const port = 8080;
 const path = require("path");
 const expressWs = require("express-ws")(app);
+// const { createServer } = require('http');
+// const { WebSocketServer } = require('ws');
+// const server = createServer(app);
+// const wss = new WebSocketServer({ server });
 
 app.use(express.static("static"));
 
-const fs = require('fs');
+// const fs = require('fs');
 
 const appId = process.env.VONAGE_APP_ID;
 let privateKey;
 
 if (process.env.PRIVATE_KEY) {
   try {
-      privateKey = fs.readFileSync(process.env.PRIVATE_KEY, 'utf8');
+      privateKey = fs.readFileSync(process.env.VONAGE_PRIVATE_KEY, 'utf8');
   } catch (error) {
       // PRIVATE_KEY entered as a single line string
-      privateKey = process.env.PRIVATE_KEY.replace(/\\n/g, '\n');
+      privateKey = process.env.VONAGE_PRIVATE_KEY.replace(/\\n/g, '\n');
   }
-} else if (process.env.PRIVATE_KEY64){
-  privateKey = Buffer.from(process.env.PRIVATE_KEY64, 'base64');
+} else if (process.env.VONAGE_PRIVATE_KEY64){
+  privateKey = Buffer.from(process.env.VONAGE_PRIVATE_KEY64, 'base64');
 }
 
 // const apiKey = credentials.VONAGE_API_KEY;
@@ -57,6 +62,7 @@ if (
   !defaultTargetLanguage
 ) {
   console.log("You must specify all values in .env");
+  console.log({ appId, privateKey, subscriptionKey, serviceRegion, websocketURI, defaultTargetLanguage });
   process.exit(1);
 }
 
@@ -81,16 +87,16 @@ const sessionOptions = {
 //   init();
 // });
 
-try {
-  const session = await vonage.video.createSession(sessionOptions);
-  // save the sessionId
-  app.set("sessionId", session.sessionId);
-  // We will wait on starting the app until this is done
-  init();
+// try {
+//   const session = await vonage.video.createSession(sessionOptions);
+//   // save the sessionId
+//   app.set("sessionId", session.sessionId);
+//   // We will wait on starting the app until this is done
+//   init();
 
-} catch(error) {
-  console.error("Error creating session: ", error);
-}
+// } catch(error) {
+//   console.error("Error creating session: ", error);
+// }
 
 app.get("/", (req, res) => {
   res.sendFile(path.resolve("pages/index.html"));
@@ -103,7 +109,7 @@ app.get("/session", async (req, res) => {
   const token = vonage.video.generateClientToken(sessionId, { role: 'moderator' });
   res.setHeader("Content-Type", "application/json");
   res.send({
-    apiKey,
+    applicationId: appId,
     sessionId,
     token,
   });
@@ -113,6 +119,7 @@ app.post("/connect", async (req, res) => {
   console.log("/connect");
   const sessionId = app.get("sessionId");
   const { streamId, connectionId, speaker, spoken } = req.body;
+  console.log({ streamId, connectionId, speaker, spoken });
   try {
     const token = tokenGenerate(appId, privateKey);
     const webSocketToken = vonage.video.generateClientToken(sessionId, { role: 'publisher' });
@@ -126,17 +133,16 @@ app.post("/connect", async (req, res) => {
         "sessionId": sessionId,
         "token": webSocketToken,
         "websocket": {
-          "uri": `${websocketURI}/socket/${connectionId}/${speaker.replaceAll(
-            " ",
-            "_"
-          )}/${spoken}`,
+          "uri": `${websocketURI}/socket/${connectionId}/${speaker.replaceAll(" ","_")}/${spoken}`,
           "streams": [streamId],
           "audioRate": 16000,
-          "bidirectional": true
+          "bidirectional": false
         }
       })
     })
+    console.log(`${websocketURI}/socket/${connectionId}/${speaker.replaceAll(" ","_")}/${spoken}`)
     const audioConnectorResponseJson = await audioConnectorResponse.json();
+    console.log("Audio Connector WebSocket connected: ", audioConnectorResponseJson);
     res.send(audioConnectorResponseJson);
   } catch (error) {
     console.error("Error starting Audio Connector: ",error);
@@ -206,7 +212,34 @@ app.post("/translate", (req, res) => {
   });
 });
 
+
+
+
+// wss.on("connection", (ws, req) => {
+//   // Parse the path from the request URL
+//   const url = req.url || '/';
+//   console.log('WebSocket connection established on path:', url);
+//   // Example: handle only /socket/:connectionId/:speaker/:spoken
+//   const socketPathRegex = /^\/socket\/([^/]+)\/([^/]+)\/([^/]+)$/;
+//   const match = url.match(socketPathRegex);
+//   if (match) {
+//     const [_, connectionId, speaker, spoken] = match;
+//     ws.connectionId = connectionId;
+//     ws.speaker = speaker;
+//     ws.spoken = spoken;
+//     console.log('Parsed WebSocket params:', { connectionId, speaker, spoken });
+//     // You can add further handling here for this path
+//   } else {
+//     console.log('WebSocket connection on unrecognized path:', url);
+//   }
+//   // Optionally, handle messages
+//   ws.on('message', (msg) => {
+//     console.log('Received message on', url, ':', msg.toString());
+//   });
+// });
+
 app.ws("/socket/:connectionId/:speaker/:spoken", (ws, req) => {
+  console.log('app.ws')
   const sessionId = app.get("sessionId");
   const speechTranslationConfig = sdk.SpeechTranslationConfig.fromSubscription(
     subscriptionKey,
@@ -271,8 +304,21 @@ app.ws("/socket/:connectionId/:speaker/:spoken", (ws, req) => {
   });
 });
 
-function init() {
-  app.listen(port, () => {
+async function init() {
+  try {
+    const session = await vonage.video.createSession(sessionOptions);
+    // save the sessionId
+    app.set("sessionId", session.sessionId);
+    await app.listen(port);
     console.log(`Example app listening at http://localhost:${port}`);
-  });
+
+    // We will wait on starting the app until this is done
+    // init();
+
+  } catch(error) {
+    console.error("Error creating session: ", error);
+  }
+
 }
+
+init();

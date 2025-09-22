@@ -131,7 +131,7 @@ function initializeSession() {
             .then((response) => response.json())
             .then((socketData) => {
               console.log({ socketData });
-              socketConnectionId = socketData.socket.connectionId;
+              socketConnectionId = socketData.connectionId;
               translateBtn.disabled = false;
             });
         }
@@ -158,7 +158,8 @@ enterBtn.addEventListener("click", () => {
   fetch("/session")
     .then((response) => response.json())
     .then((sessionData) => {
-      apiKey = sessionData.apiKey;
+      // apiKey = sessionData.apiKey;
+      applicationId = sessionData.applicationId;
       sessionId = sessionData.sessionId;
       token = sessionData.token;
       // Initialize an OpenTok Session object

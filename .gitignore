@@ -33,3 +33,4 @@ out/
 
 # Local credentials
 credentials.js
+private.key
