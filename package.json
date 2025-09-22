@@ -9,6 +9,7 @@
   "dependencies": {
     "@vonage/server-sdk": "^3.25.0",
     "debug": "~4.4.3",
+    "dotenv": "^17.2.2",
     "express": "5.1.0",
     "express-ws": "5.0.2",
     "microsoft-cognitiveservices-speech-sdk": "^1.45.0"
