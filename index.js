@@ -183,7 +183,12 @@ app.get("/disconnect/:connectionId", async (req, res) => {
   try {
     await vonage.video.disconnectClient(sessionId, req.params.connectionId);
     console.log("Successfully disconnected Audio Connector");
-    res.sendStatus(204)
+    // res.sendStatus(204)
+          res.setHeader("Content-Type", "application/json");
+      res.send({
+        status: `connection ${req.params.connectionId} disconnected`,
+      });
+
   } catch (error) {
     console.error("Error starting Audio Connector: ",error);
     res.status(500).send(`Error stopping Audio Connector: ${error}`);
@@ -254,7 +259,7 @@ app.ws("/socket/:connectionId/:speaker/:spoken", (ws, req) => {
     audioConfig
   );
 
-  recognizer.recognized = function (s, e) {
+  recognizer.recognized = async function (s, e) {
     console.log("recognized connectionId: ", req.params.connectionId);
     // Note: Can not get all translations at once: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/how-to-translate-speech?tabs=terminal&pivots=programming-language-javascript#choose-one-or-more-target-languages
     targetLanguagesToAdd.forEach((lang) => {
@@ -265,20 +270,33 @@ app.ws("/socket/:connectionId/:speaker/:spoken", (ws, req) => {
       translations[lang] = e.result.translations.get(lang);
     });
     console.log("translations: ", translations);
-    opentok.signal(
-      sessionId,
-      null,
-      {
-        type: "translation",
+
+    try {
+      const signalResponse = await vonage.video.sendSignal({ 
+        type: "translation", 
         data: JSON.stringify({
           speaker: req.params.speaker,
           translations,
         }),
-      },
-      function (error) {
-        if (error) return console.log("error:", error);
-      }
-    );
+      }, sessionId);
+      console.log("Successfully sent signal:", signalResponse);
+    } catch(error) {
+        console.error("Error sending signal:", error);
+}
+    // opentok.signal(
+    //   sessionId,
+    //   null,
+    //   {
+    //     type: "translation",
+    //     data: JSON.stringify({
+    //       speaker: req.params.speaker,
+    //       translations,
+    //     }),
+    //   },
+    //   function (error) {
+    //     if (error) return console.log("error:", error);
+    //   }
+    // );
   };
   recognizer.startContinuousRecognitionAsync(
     function (result) {
