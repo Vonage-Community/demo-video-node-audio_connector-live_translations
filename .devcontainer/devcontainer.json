@@ -8,14 +8,13 @@
   "waitFor": "onCreateCommand",
   "updateContentCommand": "npm install",
   "postCreateCommand": "",
-  "postAttachCommand": "gh codespace ports visibility 8080:public -c $CODESPACE_NAME && npm start",
+  "postAttachCommand": "gh codespace ports visibility 8080:public -c $CODESPACE_NAME && node setup.js && npm start",
   "customizations": {
     "codespaces": {
       "openFiles": [
         "index.js",
-        "index.html",
-        "js/config.js",
-        "js/app.js"
+        "pages/index.html",
+        "static/app.js"
       ]
     }
   },

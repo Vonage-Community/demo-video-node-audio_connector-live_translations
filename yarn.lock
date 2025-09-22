@@ -209,7 +209,7 @@
     "@types/node-fetch" "2.6.11"
     node-fetch "2.7.0"
 
-"@vonage/video@^1.26.0", "@vonage/video@1.26.0":
+"@vonage/video@1.26.0":
   version "1.26.0"
   resolved "https://registry.npmjs.org/@vonage/video/-/video-1.26.0.tgz"
   integrity sha512-1OE5sZO8UwVm9H1xcihs59+p97KZKvNTjpkxjeCYLddRb7iMNCPI3EiR7Y4VCBgoI94S5BIm4Gp0Fn/4wRFx3w==

@@ -38,15 +38,28 @@ input.on('data', data => {
     case 'SET_APP_NAME':
       return setAppName(data);
       break;
-    case 'BUY_NUMBER':
-      return buyNumberQuestion(data);
+    // case 'BUY_NUMBER':
+    //   return buyNumberQuestion(data);
+    //   break;
+    case 'AZURE_SUBSCRIPTION_KEY':
+      return setAzureSubscriptionKey(data);
       break;
-    case 'SET_COUNTRY_CODE':
-      return setCountryCode(data);
+    case 'AZURE_SERVICE_REGION':
+      return setAzureServiceRegion(data);
       break;
-    case 'ENTER_PHONE_NUMBER':
-      return updatePhoneNumber(data);
+    case 'SET_AZURE_LANGUAGE':
+      return setAzureLanguage(data);
       break;
+
+    // case 'BUY_NUMBER':
+    //   return buyNumberQuestion(data);
+    //   break;
+    // case 'SET_COUNTRY_CODE':
+    //   return setCountryCode(data);
+    //   break;
+    // case 'ENTER_PHONE_NUMBER':
+    //   return updatePhoneNumber(data);
+    //   break;
     default:
   }
   
@@ -85,83 +98,115 @@ function setAppName(data) {
   return true;
 }
 
-function buyNumberQuestion(data) {
-  // console.log("data:", data);
+function setAzureSubscriptionKey(data) {
   if (data.toString().replace(/\n/g, '').length === 0 || data.toString().replace(/\n/g, '') === ' ') {
-    console.log('(Can not be blank.) Want to Buy a number? (Y/N):');
-  } else if (data.toString().replace(/\n/g, '').toLowerCase() === 'y'){
-    
-    //   process.env.VONAGE_API_SECRET = data.toString().replace(/\n/g, '');
-    step = 'SET_COUNTRY_CODE';
-    console.log('Set the country code for your number (ex. US or GB):');      
-  } else if (data.toString().replace(/\n/g, '').toLowerCase() === 'n') {
-    // answered No to question
-      writeEnv();
+    console.log('(Can not be blank.) Enter Azure Subscription Key:');
+  } else {
+    process.env.AZURE_SUBSCRIPTION_KEY = data.toString().replace(/\n/g, '');
+    step = 'AZURE_SERVICE_REGION';
+    console.log('Enter Azure Service Region (ex. westus):');
+  } 
+  return true;
+}
+
+function setAzureServiceRegion(data) {
+  if (data.toString().replace(/\n/g, '').length === 0 || data.toString().replace(/\n/g, '') === ' ') {
+    console.log('(Can not be blank.) Enter Azure Service Region (ex. westus):');
+  } else {
+    process.env.AZURE_SERVICE_REGION = data.toString().replace(/\n/g, '');
+    step = 'SET_AZURE_LANGUAGE';
+    console.log('Enter default target language (ex. fr):');
   }
   return true;
 }
 
-function setCountryCode(data) {
+function setAzureLanguage(data) {
   if (data.toString().replace(/\n/g, '').length === 0 || data.toString().replace(/\n/g, '') === ' ') {
-    console.log('(Can not be blank.) Set the country code for your number (ex. US or GB):');
+    console.log('(Can not be blank.) Enter default target language (ex. fr):');
   } else {
-    buyPhoneNumber(data)      
-  }
-  return true;
-}
-
-function buyPhoneNumber(data){
-  const countryCode = data.toString().replace(/\n/g, '');
-  process.env.COUNTRY_CODE = data.toString().replace(/\n/g, '').toUpperCase();
-  //Search for a number
-  console.log('Searching for a number in country: ', countryCode);
-  vonage.numbers.getAvailableNumbers({
-      country: process.env.COUNTRY_CODE,
-      features: ['VOICE', 'SMS'],
-  })
-  .then((results) => {
-    const numbers = results.numbers;
-    console.log('Found numbers: ', numbers);
-    // Purchase a number
-    if (numbers.length === 0) {
-        console.log('No numbers found in this country. Please try another country code.');
-        return;
-    }
-    console.log('Found a number: ', numbers[0].msisdn);
-    vonage.numbers.buyNumber({
-        country: numbers[0].country,
-        msisdn: numbers[0].msisdn,
-    })
-    .then((result) => {
-        console.log('Bought the number!');
-        updatePhoneNumber(numbers[0]);
-    })
-    .catch((error) => {
-        console.error("Error buying number:", error);
-    });
-  })
-  .catch((error) => {
-      console.error(error)
-  });
-}
-
-async function updatePhoneNumber(number) {
-  console.log('Adding phone number to application...');
-  const options = {
-    country: process.env.COUNTRY_CODE,
-    msisdn: number.msisdn,
-    app_id: process.env.VONAGE_APP_ID,
-  };
-
-  const resp = await vonage.numbers.updateNumber(options);
-  if (resp.errorCode !== '200') {
-    console.error(`Error: ${resp.errorCodeLabel}`);
-  } else {
-    console.log('Added number to application!');
-    process.env.VONAGE_NUMBER = number.msisdn;
+    process.env.DEFAULT_TARGET_LANGUAGE = data.toString().replace(/\n/g, '');
     writeEnv();
   }
+  return true;
 }
+
+// function buyNumberQuestion(data) {
+//   // console.log("data:", data);
+//   if (data.toString().replace(/\n/g, '').length === 0 || data.toString().replace(/\n/g, '') === ' ') {
+//     console.log('(Can not be blank.) Want to Buy a number? (Y/N):');
+//   } else if (data.toString().replace(/\n/g, '').toLowerCase() === 'y'){
+    
+//     //   process.env.VONAGE_API_SECRET = data.toString().replace(/\n/g, '');
+//     step = 'SET_COUNTRY_CODE';
+//     console.log('Set the country code for your number (ex. US or GB):');      
+//   } else if (data.toString().replace(/\n/g, '').toLowerCase() === 'n') {
+//     // answered No to question
+//       writeEnv();
+//   }
+//   return true;
+// }
+
+// function setCountryCode(data) {
+//   if (data.toString().replace(/\n/g, '').length === 0 || data.toString().replace(/\n/g, '') === ' ') {
+//     console.log('(Can not be blank.) Set the country code for your number (ex. US or GB):');
+//   } else {
+//     buyPhoneNumber(data)      
+//   }
+//   return true;
+// }
+
+// function buyPhoneNumber(data){
+//   const countryCode = data.toString().replace(/\n/g, '');
+//   process.env.COUNTRY_CODE = data.toString().replace(/\n/g, '').toUpperCase();
+//   //Search for a number
+//   console.log('Searching for a number in country: ', countryCode);
+//   vonage.numbers.getAvailableNumbers({
+//       country: process.env.COUNTRY_CODE,
+//       features: ['VOICE', 'SMS'],
+//   })
+//   .then((results) => {
+//     const numbers = results.numbers;
+//     console.log('Found numbers: ', numbers);
+//     // Purchase a number
+//     if (numbers.length === 0) {
+//         console.log('No numbers found in this country. Please try another country code.');
+//         return;
+//     }
+//     console.log('Found a number: ', numbers[0].msisdn);
+//     vonage.numbers.buyNumber({
+//         country: numbers[0].country,
+//         msisdn: numbers[0].msisdn,
+//     })
+//     .then((result) => {
+//         console.log('Bought the number!');
+//         updatePhoneNumber(numbers[0]);
+//     })
+//     .catch((error) => {
+//         console.error("Error buying number:", error);
+//     });
+//   })
+//   .catch((error) => {
+//       console.error(error)
+//   });
+// }
+
+// async function updatePhoneNumber(number) {
+//   console.log('Adding phone number to application...');
+//   const options = {
+//     country: process.env.COUNTRY_CODE,
+//     msisdn: number.msisdn,
+//     app_id: process.env.VONAGE_APP_ID,
+//   };
+
+//   const resp = await vonage.numbers.updateNumber(options);
+//   if (resp.errorCode !== '200') {
+//     console.error(`Error: ${resp.errorCodeLabel}`);
+//   } else {
+//     console.log('Added number to application!');
+//     process.env.VONAGE_NUMBER = number.msisdn;
+//     writeEnv();
+//   }
+// }
 
 function createApp(data) {
   console.log('Creating your Application...');
@@ -225,8 +270,10 @@ function createApp(data) {
 
             //Search and Buy phone number
             process.env.VONAGE_APPLICATION_NAME = data.toString().replace(/\n/g, '');
-            step = 'BUY_NUMBER';
-            console.log('Want to Buy a number? (Y/N):');
+            // step = 'BUY_NUMBER';
+            // console.log('Want to Buy a number? (Y/N):');
+            step = 'AZURE_SUBSCRIPTION_KEY';
+            console.log('Enter Azure Subscription Key:');
 
           } catch (error) {
             console.error('An error occurred:', error);
@@ -248,11 +295,11 @@ VONAGE_API_SECRET="${process.env.VONAGE_API_SECRET}"
 VONAGE_APPLICATION_NAME="${process.env.VONAGE_APPLICATION_NAME}"
 VONAGE_APP_ID="${process.env.VONAGE_APP_ID}"
 VONAGE_PRIVATE_KEY64="${process.env.PRIVATE_KEY64}"
-APP_DOMAIN=""
-AZURE_SUBSCRIPTION_KEY=""
-AZURE_SERVICE_REGION=""
-DEFAULT_TARGET_LANGUAGE=""`;
-  
+APP_DOMAIN="${process.env.CODESPACE_NAME}.github.dev"
+AZURE_SUBSCRIPTION_KEY="${process.env.AZURE_SUBSCRIPTION_KEY}"
+AZURE_SERVICE_REGION="${process.env.AZURE_SERVICE_REGION}"
+DEFAULT_TARGET_LANGUAGE="${process.env.DEFAULT_TARGET_LANGUAGE}"`;
+
   fs.writeFile(__dirname + '/.env', contents, (err) => {
     if (err) {
       console.log('Error writing .env file: ',err);
@@ -264,24 +311,24 @@ DEFAULT_TARGET_LANGUAGE=""`;
 
 }
 
-function createUser() {
-    //create user
-  const vonage = new Vonage({
-  apiKey: process.env.VONAGE_API_KEY,
-  apiSecret: process.env.VONAGE_API_SECRET,
-  applicationId: process.env.VONAGE_APP_ID,
-  privateKey: __dirname + process.env.PRIVATE_KEY
-  }, {debug: false});
-  vonage.users.create({
-      name: process.env.ADMIN_NAME,
-      display_name: process.env.ADMIN_NAME
-  },(err, response) => {
-      if (err) {
-        console.log('Error creating user: ',err);
-      } else {
-        console.log('User created. ID: ', response.id);
-        process.exit();
-      }
-  });
+// function createUser() {
+//     //create user
+//   const vonage = new Vonage({
+//   apiKey: process.env.VONAGE_API_KEY,
+//   apiSecret: process.env.VONAGE_API_SECRET,
+//   applicationId: process.env.VONAGE_APP_ID,
+//   privateKey: __dirname + process.env.PRIVATE_KEY
+//   }, {debug: false});
+//   vonage.users.create({
+//       name: process.env.ADMIN_NAME,
+//       display_name: process.env.ADMIN_NAME
+//   },(err, response) => {
+//       if (err) {
+//         console.log('Error creating user: ',err);
+//       } else {
+//         console.log('User created. ID: ', response.id);
+//         process.exit();
+//       }
+//   });
 
-}
+// }

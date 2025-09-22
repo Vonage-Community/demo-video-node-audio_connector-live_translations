@@ -12,7 +12,8 @@ const targetSelect = document.querySelector("#target-select");
 const leaveBtn = document.querySelector("#leave-button");
 const translateBtn = document.querySelector("#translate-button");
 
-let apiKey;
+// let apiKey;
+let applicationId;
 let sessionId;
 let token;
 let session;
@@ -31,7 +32,8 @@ function handleError(error) {
 
 function initializeSession() {
   console.log("initializeSession");
-  session = OT.initSession(apiKey, sessionId);
+  // session = OT.initSession(apiKey, sessionId);
+  session = OT.initSession(applicationId, sessionId);
 
   // Subscribe to a newly created stream
   session.on("streamCreated", (event) => {
