@@ -272,7 +272,13 @@
       <div id="publisher-container">
         <div id="publisher"></div>
         <button id="leave-button">Leave</button>
-        <button id="translate-button" disabled>Translate</button>
+        <button id="translate-button" disabled>Start Translation</button>
+        <button id="toggle-translated-text-button" disabled>Show Translated Text</button>
+        <button id="toggle-translated-audio-button" disabled>Start Translated Audio</button>
+        <label for="voice-select">Choose voice:</label>
+        <select name="selected-voice" id="voice-select" disabled>
+          <!-- dynamically populated -->
+        </select>
       </div>
       <div id="subscribers"></div>
     </div>
