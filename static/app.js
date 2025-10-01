@@ -70,7 +70,7 @@ function translationStarted() {
   translateBtn.disabled = false;
   toggleTranslatedAudioBtn.disabled = false;
   toggleTranslatedTextBtn.disabled = false;
-  // voiceSelect.disabled = false;
+  voiceSelect.disabled = false;
 }
 
 function translationStopped() {
@@ -243,7 +243,10 @@ function initializeSession() {
 
 
   function closeSession() {
+    console.log("closeSession");
+    session.off();
     session.disconnect();
+    leaveBtn.removeEventListener("click", leaveBtnHandler);
     appContainer.style.display = "none";
     nameInput.value = "";
     login.style.display = "flex";
@@ -257,11 +260,16 @@ function initializeSession() {
     sayTranslation = false;
     translateBtn.textContent = "Start Translation";
     toggleTranslatedAudioBtn.textContent = "Start Translated Audio";
-    toggleTranslatedTextBtn.textContent = "Start Translated Text";
+    toggleTranslatedTextBtn.textContent = "Show Translated Text";
+    filteredVoices = [];
     synth.cancel();
   }
 
-  leaveBtn.addEventListener("click", () => {
+
+  function leaveBtnHandler() {
+    console.log("leaveBtnHandler");
+    console.log("leaveBtn clicked: isTranslating=", isTranslating);
+    console.log("socketConnectionId: ", socketConnectionId);
     if (isTranslating){
       fetch(`/disconnect/${socketConnectionId}`)
         .then((response) => response.json())
@@ -273,7 +281,26 @@ function initializeSession() {
     } else {
       closeSession();
     }
-  });
+
+  }
+
+  leaveBtn.addEventListener("click", leaveBtnHandler);
+
+  // leaveBtn.addEventListener("click", () => {
+  //   console.log("leaveBtn clicked: isTranslating=", isTranslating);
+  //   console.log("socketConnectionId: ", socketConnectionId);
+  //   if (isTranslating){
+  //     fetch(`/disconnect/${socketConnectionId}`)
+  //       .then((response) => response.json())
+  //       .then((disconnectData) => {
+  //         console.log({ disconnectData });
+  //         closeSession();
+  //       });
+      
+  //   } else {
+  //     closeSession();
+  //   }
+  // });
 }
 
 enterBtn.addEventListener("click", () => {
