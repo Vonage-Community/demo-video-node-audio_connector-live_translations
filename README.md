@@ -1,6 +1,6 @@
 # Live Translations in video calls with Audio Connector
 
-This is a demo application that allows for real-time translations feature in a video call with implemented with the Vonage [Audio Connector](https://tokbox.com/developer/guides/audio-connector/) and Microsoft Azure [AI Speech Service](https://azure.microsoft.com/en-us/products/ai-services/speech-translation).
+This is a demo application that allows for real-time translations feature in a video call with implemented with the Vonage [Audio Connector](https://developer.vonage.com/en/video/guides/audio-connector) and Microsoft Azure [AI Speech Service](https://azure.microsoft.com/en-us/products/ai-services/speech-translation).
 
 There is a companion [blog post](https://developer.vonage.com/en/blog/video-ai-live-translations-with-audio-connector) that you can read to learn more about the application works.
 
@@ -8,9 +8,10 @@ This demo is more of a showcase of a feature that can be created using the Vonag
 
 ## Credentials
 
-To get be able to run the demo, you will need to fill in all the fields in the `credentials.js` file.
+To get be able to run the demo, you will need to rename `.envcopy` to `.env` and fill in all the fields.
 
-`VONAGE_API_KEY` and `VONAGE_API_SECRET` can be found in this [dashboard](https://tokbox.com/account/).
+`VONAGE_APP_ID` and `VONAGE_PRIVATE_KEY64` can be found in [Vonage dashboard](http://dashboard.vonage.com/) under the Application you created.
+>Note: The Private Key downloaded from the application in the dashboard will be need to be Base64 converted.
 
 `AZURE_SUBSCRIPTION_KEY` and `AZURE_SERVICE_REGION` can be found in this [dashboard](https://portal.azure.com/).
 
@@ -20,16 +21,11 @@ To get be able to run the demo, you will need to fill in all the fields in the `
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Vonage-Community/demo-video-node-audio_connector-live_translations/tree/main)
 
-OR
-
-[Deploy to CodeSandbox.io](https://githubbox.com/Vonage-Community/demo-video-node-audio_connector-live_translations)
-
-One click, fill in `credentials.js`, and have a working demo. 
+This is the quickest way to get up and running. There is a script that will walk you through setting up an application and get the application running.
 
 ### Locally
 
 - Clone this repo.
 - `npm install` the dependencies
-- fill in `credentials.js`
+- fill in the credentials in the .env
 - this application uses a WebSocket Server that is publically available on the internet. A tool like [ngrok](https://ngrok.com/) or [localtunnel](https://github.com/localtunnel/localtunnel) can be used to accomplish this. Some modification to the code may need to be done.
-
