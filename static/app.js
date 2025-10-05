@@ -26,7 +26,6 @@ synth.addEventListener("voiceschanged", () => {
   console.log("voices: ", allVoices);
 });
 
-// let apiKey;
 let applicationId;
 let sessionId;
 let token;
@@ -34,11 +33,8 @@ let session;
 let streamId;
 let connectionId;
 let socketConnectionId;
-
 let isTranslating = false;
-
 let showTranslations = false;
-
 let sayTranslation = false;
 
 function handleError(error) {
@@ -82,10 +78,8 @@ function translationStopped() {
   synth.cancel();
 }
 
-
 // Connect to Audio Connector
 function connectToAudioConnector() {
-  // Implement WebSocket connection logic here if needed
   fetch("/connect", {
     method: "POST",
     headers: {
@@ -105,20 +99,36 @@ function connectToAudioConnector() {
     console.log({ socketData });
     socketConnectionId = socketData.connectionId;
     translationStarted();
-    // translateBtn.disabled = false;
-    // toggleTranslatedTextBtn.disabled = false;
-    // toggleTranslatedAudioBtn.disabled = false;
     return;
   });
-
 }
 
-
+function closeSession() {
+  console.log("closeSession");
+  session.off();
+  session.disconnect();
+  leaveBtn.removeEventListener("click", leaveBtnHandler);
+  appContainer.style.display = "none";
+  nameInput.value = "";
+  login.style.display = "flex";
+  translateBtn.disabled = true;
+  toggleTranslatedAudioBtn.disabled = true;
+  toggleTranslatedTextBtn.disabled = true;
+  translationsFeed.innerHTML = "";
+  translationsContainer.style.display = "none";
+  showTranslations = false;
+  isTranslating = false;
+  sayTranslation = false;
+  translateBtn.textContent = "Start Translation";
+  toggleTranslatedAudioBtn.textContent = "Start Translated Audio";
+  toggleTranslatedTextBtn.textContent = "Show Translated Text";
+  filteredVoices = [];
+  synth.cancel();
+}
 
 function initializeSession() {
   console.log("initializeSession");
   updateVoiceList();
-  // session = OT.initSession(apiKey, sessionId);
   session = OT.initSession(applicationId, sessionId);
 
   // Subscribe to a newly created stream
@@ -169,10 +179,8 @@ function initializeSession() {
           }
           synth.speak(utterance);
         }
-      }
-    
+      }    
   });
-
 
   // Connect to the session
   session.connect(token, (error) => {
@@ -213,94 +221,11 @@ function initializeSession() {
           handleError(error);
         } else {
           connectToAudioConnector();
-          // publishing to session, now create Audio Connector WebSocket connection!
-          // fetch("/connect", {
-          //   method: "POST",
-          //   headers: {
-          //     "Content-Type": "application/json",
-          //   },
-          //   body: JSON.stringify({
-          //     sessionId,
-          //     connectionId,
-          //     streamId,
-          //     speaker: nameInput.value,
-          //     spoken: spokenSelect.value,
-          //     target: targetSelect.value,
-          //   }),
-          // })
-          // .then((response) => response.json())
-          // .then((socketData) => {
-          //   console.log({ socketData });
-          //   socketConnectionId = socketData.connectionId;
-          //   translateBtn.disabled = false;
-          //   toggleTranslatedTextBtn.disabled = false;
-          //   toggleTranslatedAudioBtn.disabled = false;
-          // });
         }
       });
     }
   });
 
-
-  function closeSession() {
-    console.log("closeSession");
-    session.off();
-    session.disconnect();
-    leaveBtn.removeEventListener("click", leaveBtnHandler);
-    appContainer.style.display = "none";
-    nameInput.value = "";
-    login.style.display = "flex";
-    translateBtn.disabled = true;
-    toggleTranslatedAudioBtn.disabled = true;
-    toggleTranslatedTextBtn.disabled = true;
-    translationsFeed.innerHTML = "";
-    translationsContainer.style.display = "none";
-    showTranslations = false;
-    isTranslating = false;
-    sayTranslation = false;
-    translateBtn.textContent = "Start Translation";
-    toggleTranslatedAudioBtn.textContent = "Start Translated Audio";
-    toggleTranslatedTextBtn.textContent = "Show Translated Text";
-    filteredVoices = [];
-    synth.cancel();
-  }
-
-
-  function leaveBtnHandler() {
-    console.log("leaveBtnHandler");
-    console.log("leaveBtn clicked: isTranslating=", isTranslating);
-    console.log("socketConnectionId: ", socketConnectionId);
-    if (isTranslating){
-      fetch(`/disconnect/${socketConnectionId}`)
-        .then((response) => response.json())
-        .then((disconnectData) => {
-          console.log({ disconnectData });
-          closeSession();
-        });
-      
-    } else {
-      closeSession();
-    }
-
-  }
-
-  leaveBtn.addEventListener("click", leaveBtnHandler);
-
-  // leaveBtn.addEventListener("click", () => {
-  //   console.log("leaveBtn clicked: isTranslating=", isTranslating);
-  //   console.log("socketConnectionId: ", socketConnectionId);
-  //   if (isTranslating){
-  //     fetch(`/disconnect/${socketConnectionId}`)
-  //       .then((response) => response.json())
-  //       .then((disconnectData) => {
-  //         console.log({ disconnectData });
-  //         closeSession();
-  //       });
-      
-  //   } else {
-  //     closeSession();
-  //   }
-  // });
 }
 
 enterBtn.addEventListener("click", () => {
@@ -317,6 +242,21 @@ enterBtn.addEventListener("click", () => {
     });
 });
 
+function leaveBtnHandler() {
+  if (isTranslating){
+    fetch(`/disconnect/${socketConnectionId}`)
+      .then((response) => response.json())
+      .then((disconnectData) => {
+        console.log({ disconnectData });
+        closeSession();
+      });
+    
+  } else {
+    closeSession();
+  }
+}
+
+leaveBtn.addEventListener("click", leaveBtnHandler);
 
 translateBtn.addEventListener("click", () => {
   if (!isTranslating) {
@@ -337,9 +277,6 @@ translateBtn.addEventListener("click", () => {
     .then((response) => response.json())
     .then((translateData) => {
       console.log({ translateData });
-      // translationsContainer.style.display = "block";
-      // showTranslations = true;
-      // translateBtn.disabled = true;
       connectToAudioConnector();
       translationStarted();
     });
@@ -349,9 +286,6 @@ translateBtn.addEventListener("click", () => {
     .then((disconnectData) => {
       console.log({ disconnectData });
       translationStopped();
-      // isTranslating = false;
-      // translateBtn.textContent = "Start Translation";
-      // synth.cancel();
     });
 
   }
@@ -361,25 +295,11 @@ toggleTranslatedTextBtn.addEventListener("click", () => {
   showTranslations = !showTranslations;
   translationsContainer.style.display = showTranslations ? "block" : "none";
   toggleTranslatedTextBtn.textContent = showTranslations ? "Hide Translated Text" : "Show Translated Text";
-  // translateBtn.disabled = !showTranslations;
-  // if (!showTranslations) {
-  //   translationsFeed.innerHTML = "";
-  // }
-  // translationsContainer.style.display = "none";
-  // showTranslations = false;
-  // translateBtn.disabled = false;
 });
-
-// closeButton.addEventListener("click", () => {
-//   translationsContainer.style.display = "none";
-//   showTranslations = false;
-//   // translateBtn.disabled = false;
-// });
 
 toggleTranslatedAudioBtn.addEventListener("click", () => {
   sayTranslation = !sayTranslation;
   document.querySelectorAll('video').forEach(video => video.volume = sayTranslation ? 0.5 : 1);
-  // document.querySelectorAll('video').forEach(video => video.muted = sayTranslation);
   toggleTranslatedAudioBtn.textContent = sayTranslation ? "Stop Translated Audio" : "Start Translated Audio";
   voiceSelect.disabled = !sayTranslation;
 });
