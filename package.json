@@ -3,15 +3,18 @@
   "version": "1.0.0",
   "description": "A demo application to showcase live translations in video calls",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "start": "nodemon index.js localhost 8080"
   },
   "dependencies": {
+    "@vonage/server-sdk": "^3.25.0",
     "debug": "~4.4.3",
+    "dotenv": "^17.2.2",
     "express": "5.1.0",
     "express-ws": "5.0.2",
     "microsoft-cognitiveservices-speech-sdk": "^1.45.0",
-    "opentok": "^2.22.0"
+    "ws": "^8.18.3"
   },
   "devDependencies": {
     "nodemon": "3.1.10"

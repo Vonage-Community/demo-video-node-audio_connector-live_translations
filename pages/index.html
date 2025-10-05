@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
-    <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+    <script src="https://unpkg.com/@vonage/client-sdk-video@latest/dist/js/opentok.js"></script>
 
     <title>Live Translations with Audio Connector demo</title>
   </head>
@@ -264,14 +264,19 @@
 
 <section id="app-container">
   <div id="translations-container">
-    <button id="close">close</button>
     <div id="translations-feed"></div>
     </div>
     <div id="videos">
       <div id="publisher-container">
         <div id="publisher"></div>
         <button id="leave-button">Leave</button>
-        <button id="translate-button" disabled>Translate</button>
+        <button id="translate-button" disabled>Start Translation</button>
+        <button id="toggle-translated-text-button" disabled>Show Translated Text</button>
+        <button id="toggle-translated-audio-button" disabled>Start Translated Audio</button>
+        <label for="voice-select">Choose voice:</label>
+        <select name="selected-voice" id="voice-select" disabled>
+          <!-- dynamically populated -->
+        </select>
       </div>
       <div id="subscribers"></div>
     </div>
