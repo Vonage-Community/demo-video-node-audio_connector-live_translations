@@ -10,8 +10,8 @@ This demo is more of a showcase of a feature that can be created using the Vonag
 
 To get be able to run the demo, you will need to rename `.envcopy` to `.env` and fill in all the fields.
 
-`VONAGE_APP_ID` and `VONAGE_PRIVATE_KEY64` can be found in [Vonage dashboard](http://dashboard.vonage.com/) under the Application you created.
->Note: The Private Key downloaded from the application in the dashboard will be need to be Base64 converted.
+The Application ID and Private Key can be found in [Vonage dashboard]([http://dashboard.vonage.com/](https://dashboard.vonage.com/applications)) under the Application you created.
+>Note: The Private Key downloaded from the application in the dashboard will need to be Base64 converted. I made a [Base64 encoder tool](https://mylight.work/private-key-to-environment-variable) that runs completely in your browser and nothing is sent to a server.
 
 `AZURE_SUBSCRIPTION_KEY` and `AZURE_SERVICE_REGION` can be found in this [dashboard](https://portal.azure.com/).
 
