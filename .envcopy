@@ -1,4 +1,4 @@
-  # You can find the API key and API secret in the dashboard: https://tokbox.com/account/
+  # You can find the Application ID and Private Key ( will need to be Base64 encoded) in the dashboard: https://dashboard.vonage.com/applications
   VONAGE_APP_ID=
   VONAGE_PRIVATE_KEY64=
 
