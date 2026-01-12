@@ -13,11 +13,11 @@
     "dotenv": "^17.2.3",
     "express": "5.2.1",
     "express-ws": "5.0.2",
-    "microsoft-cognitiveservices-speech-sdk": "^1.46.0",
-    "ws": "^8.18.3"
+    "microsoft-cognitiveservices-speech-sdk": "^1.47.0",
+    "ws": "^8.19.0"
   },
   "devDependencies": {
-    "nodemon": "3.1.10"
+    "nodemon": "3.1.11"
   },
   "keywords": [
     "expressjs",

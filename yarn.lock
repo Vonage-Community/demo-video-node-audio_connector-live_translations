@@ -35,11 +35,11 @@
     form-data "^4.0.0"
 
 "@types/node@*":
-  version "24.5.2"
-  resolved "https://registry.npmjs.org/@types/node/-/node-24.5.2.tgz"
-  integrity sha512-FYxk1I7wPv3K2XBaoyH2cTnocQEu8AOZ60hPbsyukMPLv5/5qr7V1i8PLHdl6Zf87I+xZXFvPCXYjiTFq+YSDQ==
+  version "24.6.2"
+  resolved "https://registry.npmjs.org/@types/node/-/node-24.6.2.tgz"
+  integrity sha512-d2L25Y4j+W3ZlNAeMKcy7yDsK425ibcAOO2t7aPTz6gNMH0z2GThtwENCDc0d/Pw9wgyRqE5Px1wkV7naz8ang==
   dependencies:
-    undici-types "~7.12.0"
+    undici-types "~7.13.0"
 
 "@types/webrtc@^0.0.37":
   version "0.0.37"
@@ -48,21 +48,21 @@
 
 "@vonage/accounts@1.18.1":
   version "1.18.1"
-  resolved "https://registry.yarnpkg.com/@vonage/accounts/-/accounts-1.18.1.tgz#7c32320b5587367d560d69279222f2c909c259a0"
+  resolved "https://registry.npmjs.org/@vonage/accounts/-/accounts-1.18.1.tgz"
   integrity sha512-3pvmsBRh2ELjyV09AJSVcXEH+kEzLAI1k5a9lofak4wBVGSIB3XyFSNGak2V1GqWfgK6om8K5D6rZB2MFbUFmw==
   dependencies:
     "@vonage/server-client" "1.18.1"
 
 "@vonage/applications@1.18.1":
   version "1.18.1"
-  resolved "https://registry.yarnpkg.com/@vonage/applications/-/applications-1.18.1.tgz#b7c0f6c02d20b1037fa80104d4213ec48b029725"
+  resolved "https://registry.npmjs.org/@vonage/applications/-/applications-1.18.1.tgz"
   integrity sha512-UKRvXJRnF9hU4GBEzK8C0DTwI7T07wQFS+ByVmK5ut3jJfDkHX3dEvXxc1xlDhFl2WaE5GkuF83KcniJvMpTbg==
   dependencies:
     "@vonage/server-client" "1.18.1"
 
 "@vonage/auth@1.13.1":
   version "1.13.1"
-  resolved "https://registry.yarnpkg.com/@vonage/auth/-/auth-1.13.1.tgz#f622e25b24602a133a2986473188881f67f8577f"
+  resolved "https://registry.npmjs.org/@vonage/auth/-/auth-1.13.1.tgz"
   integrity sha512-zQT0hb97d3zx3UOnkf47b5MKiluT0m60lExJepC7qi0gUQwKqMCBspth3QU9YbxoR2WANVziTrHbesxo9u/kCQ==
   dependencies:
     "@vonage/jwt" "1.12.1"
@@ -70,7 +70,7 @@
 
 "@vonage/conversations@1.12.1":
   version "1.12.1"
-  resolved "https://registry.yarnpkg.com/@vonage/conversations/-/conversations-1.12.1.tgz#a737b94fea58a8a0be3d05707442ab7b11a505ac"
+  resolved "https://registry.npmjs.org/@vonage/conversations/-/conversations-1.12.1.tgz"
   integrity sha512-UBk/gV0oQaamMO7+yMdxbZqlfDfmybdxba9PkYOliPUReqRV6AWa5KGN9aAYOibV467chzOtgRMsVTeEnkROWA==
   dependencies:
     "@vonage/messages" "1.22.1"
@@ -80,7 +80,7 @@
 
 "@vonage/jwt@1.12.1":
   version "1.12.1"
-  resolved "https://registry.yarnpkg.com/@vonage/jwt/-/jwt-1.12.1.tgz#507d880f409eb169970337515bf74ea41321d341"
+  resolved "https://registry.npmjs.org/@vonage/jwt/-/jwt-1.12.1.tgz"
   integrity sha512-WJuGXpvjTNYOEgy/kUcAqklFchcpPToQAmsOD4+ZkbuRg06Spf5VWMT0DtILaGWQ12n6tF8eHWKeojELY9mjoA==
   dependencies:
     debug "4.3.4"
@@ -89,7 +89,7 @@
 
 "@vonage/messages@1.22.1":
   version "1.22.1"
-  resolved "https://registry.yarnpkg.com/@vonage/messages/-/messages-1.22.1.tgz#f6849b09aaa11827685bd5bca1fe1cd948f1ab9f"
+  resolved "https://registry.npmjs.org/@vonage/messages/-/messages-1.22.1.tgz"
   integrity sha512-aaBmaoylcl5MFUgUNgzfJrvGCoJdBcNXGrBbtlDKu4yRc6TozevmVD3IcRgq/mrIT/PKAg5dVO+KUkt48Ae0gA==
   dependencies:
     "@vonage/server-client" "1.18.1"
@@ -98,7 +98,7 @@
 
 "@vonage/number-insights@1.18.1":
   version "1.18.1"
-  resolved "https://registry.yarnpkg.com/@vonage/number-insights/-/number-insights-1.18.1.tgz#4c2328f4d1700d8e9152cab5e2ad8956a20f34ef"
+  resolved "https://registry.npmjs.org/@vonage/number-insights/-/number-insights-1.18.1.tgz"
   integrity sha512-+7zfdEA5jRrVKSXFS6pyDPGGV1AyvG0Y/Is+PjtLnj9sEulm2DVgltWw8A179FRmPbBa/mQyo+K6zZc02WJEtA==
   dependencies:
     "@vonage/auth" "1.13.1"
@@ -107,7 +107,7 @@
 
 "@vonage/numbers@1.20.1":
   version "1.20.1"
-  resolved "https://registry.yarnpkg.com/@vonage/numbers/-/numbers-1.20.1.tgz#4120af41fd1e4920de5a3283bbe92f3cf469a86b"
+  resolved "https://registry.npmjs.org/@vonage/numbers/-/numbers-1.20.1.tgz"
   integrity sha512-W4tRnaS3nh45th3mB0I91J7vXi8ByVKG7Grgkpldh3pthOW1OMvPSmANNgjq1K6Nf6T37plg41C17xWU4Pq8iw==
   dependencies:
     "@types/lodash.omit" "4.5.9"
@@ -118,7 +118,7 @@
 
 "@vonage/pricing@1.18.1":
   version "1.18.1"
-  resolved "https://registry.yarnpkg.com/@vonage/pricing/-/pricing-1.18.1.tgz#226699e78ba73654f5fc5eb219cac959d3d30eda"
+  resolved "https://registry.npmjs.org/@vonage/pricing/-/pricing-1.18.1.tgz"
   integrity sha512-oJtJ0z5XKFeJxDfwmYXWFDu5Yn+HrwWU+vvaTJTDnwb8TK54E5I6pU4TwVJQ7fqgDamBWq4WvILmMdKC9yWOHw==
   dependencies:
     "@vonage/auth" "1.13.1"
@@ -127,14 +127,14 @@
 
 "@vonage/redact@1.17.1":
   version "1.17.1"
-  resolved "https://registry.yarnpkg.com/@vonage/redact/-/redact-1.17.1.tgz#545005c75b38537b7cc2920f27bb11bf19d01d13"
+  resolved "https://registry.npmjs.org/@vonage/redact/-/redact-1.17.1.tgz"
   integrity sha512-QSg4CFnpPqcg+Z54EsXb6Q8wGSphKzBrEci8/G/3xX9LTDN7o/dZU/NEbFVZU41+6D1Ap5OJZi1Rai301lpoXA==
   dependencies:
     "@vonage/server-client" "1.18.1"
 
 "@vonage/server-client@1.18.1":
   version "1.18.1"
-  resolved "https://registry.yarnpkg.com/@vonage/server-client/-/server-client-1.18.1.tgz#9fa4a6b107381392d4e4c71fb778ec644038222a"
+  resolved "https://registry.npmjs.org/@vonage/server-client/-/server-client-1.18.1.tgz"
   integrity sha512-HLOT4QoVpwsxIYAB/5tN6y8yh3AVPcqoITby3Lz/AR5tNViiTNS1X6S25+EiBg8b3tUklPddIhtbHTEVDmA+gQ==
   dependencies:
     "@vonage/auth" "1.13.1"
@@ -148,7 +148,7 @@
 
 "@vonage/server-sdk@^3.25.1":
   version "3.25.1"
-  resolved "https://registry.yarnpkg.com/@vonage/server-sdk/-/server-sdk-3.25.1.tgz#45d0cf5c91c89ca9f0c22eb140ed20a585159134"
+  resolved "https://registry.npmjs.org/@vonage/server-sdk/-/server-sdk-3.25.1.tgz"
   integrity sha512-8aDGQhLhM+m6A9+3ME+QoJ/NQLccQFHTwrreXatXGx51snSFP4olkngS2fRdWlApU0oqPQUaH65dGb5xPRIsNg==
   dependencies:
     "@vonage/accounts" "1.18.1"
@@ -170,7 +170,7 @@
 
 "@vonage/sms@1.19.1":
   version "1.19.1"
-  resolved "https://registry.yarnpkg.com/@vonage/sms/-/sms-1.19.1.tgz#649b81f79782d9aae764cff8b8128be72184fd4d"
+  resolved "https://registry.npmjs.org/@vonage/sms/-/sms-1.19.1.tgz"
   integrity sha512-Jrry3LP/k1I9LtUZdmOgs6pa6kdffuUbYh98xKDtw1W5YUu5rsceeV64LxwcAorO7ughqmQdq9+63BKnGZzLTA==
   dependencies:
     "@vonage/auth" "1.13.1"
@@ -178,21 +178,21 @@
 
 "@vonage/users@1.12.1":
   version "1.12.1"
-  resolved "https://registry.yarnpkg.com/@vonage/users/-/users-1.12.1.tgz#be9a66f5ec1633b81a0b3d25b0b5c7cf6045eb08"
+  resolved "https://registry.npmjs.org/@vonage/users/-/users-1.12.1.tgz"
   integrity sha512-V4aCG2n1LnynAM0iR/wZtsB28Ze2ag/bp9G/DbgOjCmsIm460/UEuMfk1zyFWvgNmydLBVjxqmB7vAoe/XLV4w==
   dependencies:
     "@vonage/server-client" "1.18.1"
 
 "@vonage/verify2@1.17.1":
   version "1.17.1"
-  resolved "https://registry.yarnpkg.com/@vonage/verify2/-/verify2-1.17.1.tgz#acfb660af79302f3ca2b8bf931437844eb05ed49"
+  resolved "https://registry.npmjs.org/@vonage/verify2/-/verify2-1.17.1.tgz"
   integrity sha512-ctIvl/z4OsF6LaAyFBJodDJ6yYDlp+oHhGvZkKlp3Vlgowfyc/CSp2yrznY3Z7Kfpmp8rv7Qztur+SyXE7VziQ==
   dependencies:
     "@vonage/server-client" "1.18.1"
 
 "@vonage/verify@1.18.1":
   version "1.18.1"
-  resolved "https://registry.yarnpkg.com/@vonage/verify/-/verify-1.18.1.tgz#cc896af2dafceed3e68432729f67c027e2ffbe08"
+  resolved "https://registry.npmjs.org/@vonage/verify/-/verify-1.18.1.tgz"
   integrity sha512-7ydzRgeQSlZHr67FucuimD+rtGjvd3H5IFyuZKZwS3j6i3LcnH6BeXZjET5si6RLtopl5k8NsgCEYPOiM9YgxA==
   dependencies:
     "@types/lodash.omit" "4.5.9"
@@ -203,7 +203,7 @@
 
 "@vonage/vetch@1.9.1":
   version "1.9.1"
-  resolved "https://registry.yarnpkg.com/@vonage/vetch/-/vetch-1.9.1.tgz#cf1c4b338becbf2b620bf54497360f47c337c754"
+  resolved "https://registry.npmjs.org/@vonage/vetch/-/vetch-1.9.1.tgz"
   integrity sha512-e8yzt0R4AU2d8iS+8J+bgQtz/y0AkGena9I58Dpi4e/0nN9UMMwfMxXx4s7IBwtHakWB38byouZpoV17ZSNXSQ==
   dependencies:
     "@types/node-fetch" "2.6.11"
@@ -211,7 +211,7 @@
 
 "@vonage/video@1.26.1":
   version "1.26.1"
-  resolved "https://registry.yarnpkg.com/@vonage/video/-/video-1.26.1.tgz#c20e8810bd9f2452e4e792cd478dd396d049647e"
+  resolved "https://registry.npmjs.org/@vonage/video/-/video-1.26.1.tgz"
   integrity sha512-N+zgfjfZD3MWaKrTkYrpFzp7ouBUqTKoJauLkojat+z3kuKZj62PEBZ0fFMUKZVp78HnJ5nzW8foFvxA3b4mJg==
   dependencies:
     "@vonage/auth" "1.13.1"
@@ -221,7 +221,7 @@
 
 "@vonage/voice@1.19.1":
   version "1.19.1"
-  resolved "https://registry.yarnpkg.com/@vonage/voice/-/voice-1.19.1.tgz#ea54ddb9fa461dc5104cf0aa4de4c23c461a9a5e"
+  resolved "https://registry.npmjs.org/@vonage/voice/-/voice-1.19.1.tgz"
   integrity sha512-tdFMsJYxNrJbh0e+U5gwVPI8puy3zXmxqdR4F6wXDWFoyYSe9gvRsSmvM9ALYIlCn3N/bTgHLyMXKVBra7kX9A==
   dependencies:
     "@types/debug" "4.1.12"
@@ -430,7 +430,7 @@ depd@^2.0.0, depd@~2.0.0:
 
 dotenv@^17.2.3:
   version "17.2.3"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-17.2.3.tgz#ad995d6997f639b11065f419a22fabf567cdb9a2"
+  resolved "https://registry.npmjs.org/dotenv/-/dotenv-17.2.3.tgz"
   integrity sha512-JVUnt+DUIzu87TABbhPmNfVdBDt18BLOWjMUFJMSi/Qqg7NTYtabbvSNJGOJ7afbRuv9D/lngizHtP7QyLQ+9w==
 
 dunder-proto@^1.0.1:
@@ -738,9 +738,9 @@ jsonwebtoken@9.0.2:
     ms "^2.1.1"
     semver "^7.5.4"
 
-jwa@^1.4.1:
+jwa@^1.4.2:
   version "1.4.2"
-  resolved "https://registry.npmjs.org/jwa/-/jwa-1.4.2.tgz"
+  resolved "https://registry.yarnpkg.com/jwa/-/jwa-1.4.2.tgz#16011ac6db48de7b102777e57897901520eec7b9"
   integrity sha512-eeH5JO+21J78qMvTIDdBXidBd6nG2kZjg5Ohz/1fpa28Z4CcsWUzJ1ZZyFq/3z3N17aZy+ZuBoHljASbL1WfOw==
   dependencies:
     buffer-equal-constant-time "^1.0.1"
@@ -748,11 +748,11 @@ jwa@^1.4.1:
     safe-buffer "^5.0.1"
 
 jws@^3.2.2:
-  version "3.2.2"
-  resolved "https://registry.npmjs.org/jws/-/jws-3.2.2.tgz"
-  integrity sha512-YHlZCB6lMTllWDtSPHz/ZXTsi8S00usEV6v1tjq8tOUZzw7DpSDWVXjXDre6ed1w/pd495ODpHZYSdkRTsa0HA==
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/jws/-/jws-3.2.3.tgz#5ac0690b460900a27265de24520526853c0b8ca1"
+  integrity sha512-byiJ0FLRdLdSVSReO/U4E7RoEyOCKnEnEPMjq3HxWtvzLsV08/i5RQKsFVNkCldrCaPr2vDNAOMsfs8T/Hze7g==
   dependencies:
-    jwa "^1.4.1"
+    jwa "^1.4.2"
     safe-buffer "^5.0.1"
 
 lodash.camelcase@4.3.0:
@@ -830,10 +830,10 @@ merge-descriptors@^2.0.0:
   resolved "https://registry.npmjs.org/merge-descriptors/-/merge-descriptors-2.0.0.tgz"
   integrity sha512-Snk314V5ayFLhp3fkUREub6WtjBfPdCPY1Ln8/8munuLuiYhsABgBVWsozAG+MWMbVEvcdcpbi9R7ww22l9Q3g==
 
-microsoft-cognitiveservices-speech-sdk@^1.46.0:
-  version "1.46.0"
-  resolved "https://registry.yarnpkg.com/microsoft-cognitiveservices-speech-sdk/-/microsoft-cognitiveservices-speech-sdk-1.46.0.tgz#dfe9753df847125c482de093e0501df6cfae3746"
-  integrity sha512-Vfs2GHQJmPdoSfmVE6uEZTmtiROuaHrP0+ak5SAjS1kXsnuVXQR75wAdxjK14I7d1+0GZ/mE3X3J2cPRGwKxPA==
+microsoft-cognitiveservices-speech-sdk@^1.47.0:
+  version "1.47.0"
+  resolved "https://registry.npmjs.org/microsoft-cognitiveservices-speech-sdk/-/microsoft-cognitiveservices-speech-sdk-1.47.0.tgz"
+  integrity sha512-uLDuFPQ/xRlHeBLtypF5Rh9DgEJW6YMrhwDyd0PaF4I2xLxPKUp6Seq9YQ4B3MUfmQaBdwMd15W+uFBSt/RS2g==
   dependencies:
     "@types/webrtc" "^0.0.37"
     agent-base "^6.0.1"
@@ -895,10 +895,10 @@ node-fetch@2.7.0:
   dependencies:
     whatwg-url "^5.0.0"
 
-nodemon@3.1.10:
-  version "3.1.10"
-  resolved "https://registry.npmjs.org/nodemon/-/nodemon-3.1.10.tgz"
-  integrity sha512-WDjw3pJ0/0jMFmyNDp3gvY2YizjLmmOUQo6DEBY+JgdvW/yQ9mEeSw6H5ythl5Ny2ytb7f9C2nIbjSxMNzbJXw==
+nodemon@3.1.11:
+  version "3.1.11"
+  resolved "https://registry.npmjs.org/nodemon/-/nodemon-3.1.11.tgz"
+  integrity sha512-is96t8F/1//UHAjNPHpbsNY46ELPpftGUoSVNXwUfMk/qdjSylYrWSu1XavVTBOn526kFiOR733ATgNBCQyH0g==
   dependencies:
     chokidar "^3.5.2"
     debug "^4"
@@ -964,9 +964,9 @@ pstree.remy@^1.1.8:
   integrity sha512-77DZwxQmxKnu3aR542U+X8FypNzbfJ+C5XQDk3uWjWxn6151aIMGthWYRXTqT1E5oJvg+ljaa2OJi+VfvCOQ8w==
 
 qs@^6.14.0:
-  version "6.14.0"
-  resolved "https://registry.npmjs.org/qs/-/qs-6.14.0.tgz"
-  integrity sha512-YWWTjgABSKcvs/nWBi9PycY/JiPJqOD4JA6o9Sej2AtvSGarXxKC3OQSk4pAarbdQlKAh5D4FCQkJNkW+GAn3w==
+  version "6.14.1"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.14.1.tgz#a41d85b9d3902f31d27861790506294881871159"
+  integrity sha512-4EK3+xJl8Ts67nLYNwqw/dsFVnCf+qR7RgXSK9jEEm9unao3njwMDdmsdvoKBKHzxd7tCYz5e5M+SnMjdtXGQQ==
   dependencies:
     side-channel "^1.1.0"
 
@@ -1150,10 +1150,10 @@ undefsafe@^2.0.5:
   resolved "https://registry.npmjs.org/undefsafe/-/undefsafe-2.0.5.tgz"
   integrity sha512-WxONCrssBM8TSPRqN5EmsjVrsv4A8X12J4ArBiiayv3DyyG3ZlIg6yysuuSYdZsVz3TKcTg2fd//Ujd4CHV1iA==
 
-undici-types@~7.12.0:
-  version "7.12.0"
-  resolved "https://registry.npmjs.org/undici-types/-/undici-types-7.12.0.tgz"
-  integrity sha512-goOacqME2GYyOZZfb5Lgtu+1IDmAlAEu5xnD3+xTzS10hT0vzpf0SPjkXwAw9Jm+4n/mQGDP3LO8CPbYROeBfQ==
+undici-types@~7.13.0:
+  version "7.13.0"
+  resolved "https://registry.npmjs.org/undici-types/-/undici-types-7.13.0.tgz"
+  integrity sha512-Ov2Rr9Sx+fRgagJ5AX0qvItZG/JKKoBRAVITs1zk7IqZGTJUwgUr7qoYBpWwakpWilTZFM98rG/AFRocu10iIQ==
 
 unpipe@~1.0.0:
   version "1.0.0"
@@ -1193,7 +1193,7 @@ ws@^7.4.6:
   resolved "https://registry.npmjs.org/ws/-/ws-7.5.10.tgz"
   integrity sha512-+dbF1tHwZpXcbOJdVOkzLDxZP1ailvSxM6ZweXTegylPny803bFhA+vqBYw4s31NSAk4S2Qz+AKXK9a4wkdjcQ==
 
-ws@^8.18.2, ws@^8.18.3:
-  version "8.18.3"
-  resolved "https://registry.npmjs.org/ws/-/ws-8.18.3.tgz"
-  integrity sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==
+ws@^8.18.2, ws@^8.19.0:
+  version "8.19.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.19.0.tgz#ddc2bdfa5b9ad860204f5a72a4863a8895fd8c8b"
+  integrity sha512-blAT2mjOEIi0ZzruJfIhb3nps74PRWTCz1IjglWEEpQl5XS/UNama6u2/rjFkDDouqr4L67ry+1aGIALViWjDg==
