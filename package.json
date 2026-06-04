@@ -17,7 +17,7 @@
     "ws": "^8.19.0"
   },
   "devDependencies": {
-    "nodemon": "3.1.11"
+    "nodemon": "3.1.14"
   },
   "keywords": [
     "expressjs",
